@@ -1,0 +1,334 @@
+/* ===== Reset & Base ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #1a1a1a;
+  background-color: #fafafa;
+  line-height: 1.6;
+}
+
+/* ===== Header ===== */
+.site-header {
+  text-align: center;
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 20px;
+}
+
+.hero-image img {
+  width: 220px;
+  height: auto;
+  display: block;
+}
+
+/* ===== Navigation ===== */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 24px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #c0605a;
+}
+
+/* ===== Page Content ===== */
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  min-height: 60vh;
+}
+
+/* ===== Chips Filter (Works page) ===== */
+.chips-filter {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: transparent;
+  border: 1.5px solid #1a1a1a;
+  border-radius: 24px;
+  padding: 8px 24px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.chip:hover {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.chip.active {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* ===== Works Grid ===== */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.work-item {
+  text-decoration: none;
+  color: #1a1a1a;
+  display: block;
+}
+
+.work-thumbnail {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  aspect-ratio: 16 / 10;
+  background: #e0e0e0;
+}
+
+.work-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.work-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.work-overlay span {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 2px solid #fff;
+  padding: 10px 28px;
+  border-radius: 4px;
+}
+
+.work-item:hover .work-overlay {
+  opacity: 1;
+}
+
+.work-item:hover .work-thumbnail img {
+  transform: scale(1.05);
+}
+
+.work-info {
+  padding: 12px 4px;
+  text-align: center;
+}
+
+.work-title {
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Character design image items (no overlay, just images) */
+.work-item--image {
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f5f3f0;
+  max-width: 260px;
+}
+
+.work-item--image img {
+  width: 100%;
+  display: block;
+}
+
+/* Grid switches for character design — smaller items, more columns */
+.works-grid.grid-2 {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 260px));
+  gap: 24px;
+  justify-content: center;
+}
+
+/* Hide filtered items */
+.work-item.hidden {
+  display: none;
+}
+
+/* ===== Project Detail Page ===== */
+.back-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 32px;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: #1a1a1a;
+}
+
+.project-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.project-video video {
+  width: 100%;
+  display: block;
+  border-radius: 6px;
+  background: #1a1a1a;
+}
+
+.project-title {
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.project-meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.project-meta dt {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #888;
+  align-self: center;
+}
+
+.project-meta dd {
+  align-self: center;
+}
+
+.project-awards h2 {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 16px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.award-item img {
+  width: 100%;
+  display: block;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.award-item:hover img {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .project-detail {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .awards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== Footer ===== */
+.site-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 24px;
+  font-size: 13px;
+  color: #999;
+  border-top: 1px solid #e0e0e0;
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.social-links a {
+  color: #999;
+  transition: color 0.2s;
+}
+
+.social-links a:hover {
+  color: #1a1a1a;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 600px) {
+  .main-nav {
+    gap: 24px;
+  }
+
+  .nav-link {
+    font-size: 12px;
+  }
+
+  .works-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .works-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
