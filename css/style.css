@@ -575,7 +575,9 @@ body {
   gap: 8px;
   margin-top: 16px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding: 0 24px 4px;
+  margin-left: -24px;
+  margin-right: -24px;
   justify-content: center;
 }
 
