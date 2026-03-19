@@ -93,27 +93,26 @@ body {
 .nav-dropdown-menu {
   display: none;
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   background: #fff;
   border: 1.5px solid var(--blue);
   border-radius: 8px;
-  padding: 8px 0;
+  padding: 0;
   min-width: 200px;
   z-index: 100;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  padding-top: 0;
 }
 
 /* Invisible bridge so mouse can travel from link to menu */
 .nav-dropdown-menu::before {
   content: '';
   position: absolute;
-  top: -12px;
+  top: -16px;
   left: 0;
   right: 0;
-  height: 12px;
+  height: 16px;
 }
 
 .nav-dropdown:hover .nav-dropdown-menu {
@@ -152,7 +151,6 @@ body {
 
 .nav-dropdown-item.active {
   color: var(--red);
-  font-weight: 600;
 }
 
 /* ===== Page Content ===== */
