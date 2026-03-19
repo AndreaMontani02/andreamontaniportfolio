@@ -4,90 +4,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Works — Andrea Montani</title>
-  <link rel="icon" href="images/hero-placeholder.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/logo.png" type="image/png">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
   <header class="site-header">
     <div class="hero-image">
-      <img src="images/hero-placeholder.svg" alt="Andrea Montani">
+      <img src="assets/logo.png" alt="Andrea Montani">
     </div>
     <nav class="main-nav">
       <a href="index.html" class="nav-link">Home</a>
-      <a href="works.html" class="nav-link active">Works</a>
+      <div class="nav-dropdown">
+        <a href="works.html" class="nav-link active">Works</a>
+        <div class="nav-dropdown-menu">
+          <button class="nav-dropdown-item active" data-filter="animation">Animation</button>
+          <button class="nav-dropdown-item" data-filter="character-design">Character Design</button>
+          <button class="nav-dropdown-item" data-filter="sketchbook">Sketchbook</button>
+        </div>
+      </div>
       <a href="about.html" class="nav-link">About</a>
     </nav>
   </header>
 
   <main class="page-content">
-    <div class="chips-filter">
-      <button class="chip active" data-filter="animation">Animation</button>
-      <button class="chip" data-filter="character-design">Character Design</button>
-      <button class="chip" data-filter="sketchbook">Sketchbook</button>
-    </div>
+<section class="works-grid">
 
-    <section class="works-grid">
-
-      <a href="projects/naba-portfolio-review.html" class="work-item" data-category="animation">
+      <div class="work-item work-item--video" data-category="animation">
         <div class="work-thumbnail">
-          <img src="images/thumbs/naba-portfolio-review.jpg" alt="NABA - Portfolio Review ADV">
-          <div class="work-overlay"><span>Apri</span></div>
+          <video muted loop playsinline preload="metadata">
+            <source src="assets/animation/portfolio review adv x NABA.mov" type="video/quicktime">
+            <source src="assets/animation/portfolio review adv x NABA.mov" type="video/mp4">
+          </video>
+          <div class="work-overlay"><span>Play</span></div>
         </div>
         <div class="work-info">
-          <h3 class="work-title">NABA - Portfolio Review ADV</h3>
+          <h3 class="work-title">Portfolio Review ADV x NABA</h3>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="work-item" data-category="animation">
+      <div class="work-item work-item--video" data-category="animation">
         <div class="work-thumbnail">
-          <img src="images/thumbs/il-canto-del-marinaio.jpg" alt="Il Canto del Marinaio">
-          <div class="work-overlay"><span>Apri</span></div>
+          <video muted loop playsinline preload="metadata">
+            <source src="assets/animation/Billy the seed & the bad nuts.mov" type="video/quicktime">
+            <source src="assets/animation/Billy the seed & the bad nuts.mov" type="video/mp4">
+          </video>
+          <div class="work-overlay"><span>Play</span></div>
         </div>
         <div class="work-info">
-          <h3 class="work-title">Il Canto del Marinaio</h3>
+          <h3 class="work-title">Billy the Seed &amp; the Bad Nuts</h3>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="work-item" data-category="animation">
+      <div class="work-item work-item--video" data-category="animation">
         <div class="work-thumbnail">
-          <img src="images/thumbs/routine.jpg" alt="Routine">
-          <div class="work-overlay"><span>Apri</span></div>
+          <video muted loop playsinline preload="metadata">
+            <source src="assets/animation/ROUTINE.mov" type="video/quicktime">
+            <source src="assets/animation/ROUTINE.mov" type="video/mp4">
+          </video>
+          <div class="work-overlay"><span>Play</span></div>
         </div>
         <div class="work-info">
           <h3 class="work-title">Routine</h3>
         </div>
-      </a>
+      </div>
 
-      <a href="#" class="work-item" data-category="animation">
+      <div class="work-item work-item--video" data-category="animation">
         <div class="work-thumbnail">
-          <img src="images/thumbs/placeholder-4.jpg" alt="Progetto 4">
-          <div class="work-overlay"><span>Apri</span></div>
+          <video muted loop playsinline preload="metadata">
+            <source src="assets/animation/METRO.mov" type="video/quicktime">
+            <source src="assets/animation/METRO.mov" type="video/mp4">
+          </video>
+          <div class="work-overlay"><span>Play</span></div>
         </div>
         <div class="work-info">
-          <h3 class="work-title">Progetto 4</h3>
+          <h3 class="work-title">Metro</h3>
         </div>
-      </a>
-
-      <a href="#" class="work-item" data-category="animation">
-        <div class="work-thumbnail">
-          <img src="images/thumbs/placeholder-5.jpg" alt="Progetto 5">
-          <div class="work-overlay"><span>Apri</span></div>
-        </div>
-        <div class="work-info">
-          <h3 class="work-title">Progetto 5</h3>
-        </div>
-      </a>
-
-      <a href="#" class="work-item" data-category="animation">
-        <div class="work-thumbnail">
-          <img src="images/thumbs/luce-tra-i-frammenti.jpg" alt="Luce tra i Frammenti">
-          <div class="work-overlay"><span>Apri</span></div>
-        </div>
-        <div class="work-info">
-          <h3 class="work-title">Luce tra i Frammenti</h3>
-        </div>
-      </a>
+      </div>
 
       <!-- Character Design items -->
       <a href="projects/character-design-1.html" class="work-item work-item--image" data-category="character-design">
@@ -143,22 +136,38 @@
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div class="sketchbook-image">
-          <img src="https://placehold.co/900x600/f5f3f0/ccc?text=Sketch+1" alt="Sketch 1" class="sketchbook-slide sketchbook-active">
-          <img src="https://placehold.co/900x600/e8e6e3/ccc?text=Sketch+2" alt="Sketch 2" class="sketchbook-slide">
-          <img src="https://placehold.co/900x600/dbd9d6/ccc?text=Sketch+3" alt="Sketch 3" class="sketchbook-slide">
-          <img src="https://placehold.co/900x600/d0cec9/ccc?text=Sketch+4" alt="Sketch 4" class="sketchbook-slide">
-          <img src="https://placehold.co/900x600/c5c3be/ccc?text=Sketch+5" alt="Sketch 5" class="sketchbook-slide">
+          <img src="assets/sketchbook/1.png" alt="Sketch 1" class="sketchbook-slide sketchbook-active">
+          <img src="assets/sketchbook/2.png" alt="Sketch 2" class="sketchbook-slide">
+          <img src="assets/sketchbook/3.png" alt="Sketch 3" class="sketchbook-slide">
+          <img src="assets/sketchbook/4.png" alt="Sketch 4" class="sketchbook-slide">
+          <img src="assets/sketchbook/5.png" alt="Sketch 5" class="sketchbook-slide">
+          <img src="assets/sketchbook/6.png" alt="Sketch 6" class="sketchbook-slide">
+          <img src="assets/sketchbook/7.png" alt="Sketch 7" class="sketchbook-slide">
+          <img src="assets/sketchbook/8.png" alt="Sketch 8" class="sketchbook-slide">
+          <img src="assets/sketchbook/9.png" alt="Sketch 9" class="sketchbook-slide">
+          <img src="assets/sketchbook/10.png" alt="Sketch 10" class="sketchbook-slide">
+          <img src="assets/sketchbook/11.png" alt="Sketch 11" class="sketchbook-slide">
+          <img src="assets/sketchbook/12.png" alt="Sketch 12" class="sketchbook-slide">
+          <img src="assets/sketchbook/13.png" alt="Sketch 13" class="sketchbook-slide">
         </div>
         <button class="sketchbook-arrow sketchbook-arrow--right" aria-label="Successiva">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
       </div>
       <div class="sketchbook-thumbs">
-        <button class="sketchbook-thumb sketchbook-thumb-active" data-index="0"><img src="https://placehold.co/100x100/f5f3f0/ccc?text=1" alt="Sketch 1"></button>
-        <button class="sketchbook-thumb" data-index="1"><img src="https://placehold.co/100x100/e8e6e3/ccc?text=2" alt="Sketch 2"></button>
-        <button class="sketchbook-thumb" data-index="2"><img src="https://placehold.co/100x100/dbd9d6/ccc?text=3" alt="Sketch 3"></button>
-        <button class="sketchbook-thumb" data-index="3"><img src="https://placehold.co/100x100/d0cec9/ccc?text=4" alt="Sketch 4"></button>
-        <button class="sketchbook-thumb" data-index="4"><img src="https://placehold.co/100x100/c5c3be/ccc?text=5" alt="Sketch 5"></button>
+        <button class="sketchbook-thumb sketchbook-thumb-active" data-index="0"><img src="assets/sketchbook/1.png" alt="Sketch 1"></button>
+        <button class="sketchbook-thumb" data-index="1"><img src="assets/sketchbook/2.png" alt="Sketch 2"></button>
+        <button class="sketchbook-thumb" data-index="2"><img src="assets/sketchbook/3.png" alt="Sketch 3"></button>
+        <button class="sketchbook-thumb" data-index="3"><img src="assets/sketchbook/4.png" alt="Sketch 4"></button>
+        <button class="sketchbook-thumb" data-index="4"><img src="assets/sketchbook/5.png" alt="Sketch 5"></button>
+        <button class="sketchbook-thumb" data-index="5"><img src="assets/sketchbook/6.png" alt="Sketch 6"></button>
+        <button class="sketchbook-thumb" data-index="6"><img src="assets/sketchbook/7.png" alt="Sketch 7"></button>
+        <button class="sketchbook-thumb" data-index="7"><img src="assets/sketchbook/8.png" alt="Sketch 8"></button>
+        <button class="sketchbook-thumb" data-index="8"><img src="assets/sketchbook/9.png" alt="Sketch 9"></button>
+        <button class="sketchbook-thumb" data-index="9"><img src="assets/sketchbook/10.png" alt="Sketch 10"></button>
+        <button class="sketchbook-thumb" data-index="10"><img src="assets/sketchbook/11.png" alt="Sketch 11"></button>
+        <button class="sketchbook-thumb" data-index="11"><img src="assets/sketchbook/12.png" alt="Sketch 12"></button>
+        <button class="sketchbook-thumb" data-index="12"><img src="assets/sketchbook/13.png" alt="Sketch 13"></button>
       </div>
       <p class="sketchbook-counter"></p>
     </section>

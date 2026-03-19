@@ -1,6 +1,6 @@
-// Chip filter logic for Works page
+// Dropdown filter logic for Works page
 document.addEventListener('DOMContentLoaded', () => {
-  const chips = document.querySelectorAll('.chip');
+  const dropdownItems = document.querySelectorAll('.nav-dropdown-item');
   const items = document.querySelectorAll('.work-item');
   const grid = document.querySelector('.works-grid');
   const sketchbookViewer = document.querySelector('.sketchbook-viewer');
@@ -30,29 +30,32 @@ document.addEventListener('DOMContentLoaded', () => {
       if (grid) grid.style.display = '';
       if (sketchbookViewer) sketchbookViewer.classList.add('hidden');
     }
+
+    // Update active state on dropdown items
+    dropdownItems.forEach(di => {
+      di.classList.toggle('active', di.dataset.filter === filter);
+    });
   }
 
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-      applyFilter(chip.dataset.filter);
-    });
+  // On works page, dropdown items are buttons with data-filter
+  dropdownItems.forEach(item => {
+    if (item.dataset.filter) {
+      item.addEventListener('click', (e) => {
+        e.preventDefault();
+        applyFilter(item.dataset.filter);
+      });
+    }
   });
 
-  // Apply initial filter: use URL param if present, otherwise active chip
+  // Apply initial filter: use URL param if present, otherwise default to animation
   const urlFilter = new URLSearchParams(window.location.search).get('filter');
   if (urlFilter) {
-    const matchingChip = document.querySelector(`.chip[data-filter="${urlFilter}"]`);
-    if (matchingChip) {
-      chips.forEach(c => c.classList.remove('active'));
-      matchingChip.classList.add('active');
-      applyFilter(urlFilter);
-    }
-  } else {
-    const activeChip = document.querySelector('.chip.active');
-    if (activeChip) {
-      applyFilter(activeChip.dataset.filter);
+    applyFilter(urlFilter);
+  } else if (grid) {
+    // Only apply default filter on works page
+    const activeItem = document.querySelector('.nav-dropdown-item.active');
+    if (activeItem && activeItem.dataset.filter) {
+      applyFilter(activeItem.dataset.filter);
     }
   }
 
@@ -161,6 +164,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'ArrowRight') showSketch(skIndex + 1);
     });
   }
+
+  // Video items: play on hover, pause on leave
+  document.querySelectorAll('.work-item--video').forEach(item => {
+    const video = item.querySelector('video');
+    if (!video) return;
+    item.addEventListener('mouseenter', () => video.play());
+    item.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+  });
 
   // Slideshow loop for character design items
   const slideshows = document.querySelectorAll('.slideshow');
