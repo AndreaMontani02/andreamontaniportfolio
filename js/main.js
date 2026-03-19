@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
     item.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
   });
 
-  // Slideshow loop for character design items
+  // Slideshow loop for character design items (legacy)
   const slideshows = document.querySelectorAll('.slideshow');
   slideshows.forEach(slideshow => {
     const slides = slideshow.querySelectorAll('.slide');
@@ -211,5 +211,19 @@ document.addEventListener('DOMContentLoaded', () => {
       current = (current + 1) % slides.length;
       slides[current].classList.add('active');
     }, 2000);
+  });
+
+  // Turnaround slideshow loop for character design items — always animating
+  const turnaroundShows = document.querySelectorAll('.turnaround-slideshow');
+  turnaroundShows.forEach(slideshow => {
+    const slides = slideshow.querySelectorAll('.turnaround-slide');
+    if (slides.length <= 1) return;
+
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 150);
   });
 });

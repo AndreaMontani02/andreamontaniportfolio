@@ -316,6 +316,27 @@ body {
   opacity: 1;
 }
 
+/* Turnaround slideshow */
+.turnaround-slideshow {
+  position: absolute;
+  inset: -20%;
+  width: 140%;
+  height: 140%;
+}
+
+.turnaround-slideshow .turnaround-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+}
+
+.turnaround-slideshow .turnaround-slide.active {
+  display: block;
+}
+
 /* Grid switches for character design — smaller items, more columns */
 .works-grid.grid-2 {
   grid-template-columns: repeat(auto-fill, minmax(200px, 260px));
