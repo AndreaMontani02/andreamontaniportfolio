@@ -791,31 +791,41 @@ body {
 }
 
 /* ===== About Page ===== */
+.about-page {
+  position: relative;
+}
+
+.lanyard-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 0;
+  pointer-events: auto;
+}
+
 .about-section {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 48px;
   align-items: flex-start;
   max-width: 800px;
   margin: 0 auto;
+  pointer-events: none;
 }
 
-.about-photo {
+.about-spacer {
   flex-shrink: 0;
   width: 300px;
-  height: 400px;
-}
-
-.about-photo iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
 }
 
 .about-text {
   text-align: center;
   font-size: 15px;
   line-height: 1.8;
+  pointer-events: auto;
 }
 
 .about-text p {
@@ -852,7 +862,7 @@ body {
     align-items: center;
   }
 
-  .about-photo {
+  .about-spacer {
     width: 260px;
     height: 350px;
   }
