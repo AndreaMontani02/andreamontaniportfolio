@@ -145,9 +145,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showSketch(index) {
-      skSlides[skIndex].classList.remove('sketchbook-active');
-      skIndex = (index + skSlides.length) % skSlides.length;
-      skSlides[skIndex].classList.add('sketchbook-active');
+      const oldIndex = skIndex;
+      const newIndex = (index + skSlides.length) % skSlides.length;
+      if (newIndex === oldIndex) return;
+
+      const goingRight = newIndex > oldIndex;
+      const outgoing = skSlides[oldIndex];
+      const incoming = skSlides[newIndex];
+
+      // Outgoing: remove active (defaults to translateX(40px) = exit right)
+      // If going right, override exit to left
+      outgoing.classList.remove('sketchbook-active');
+      if (goingRight) outgoing.classList.add('slide-out-left');
+
+      // Incoming: if going left, start from left side
+      if (!goingRight) incoming.classList.add('slide-in-left');
+      incoming.offsetWidth; // force reflow
+      incoming.classList.remove('slide-in-left');
+      incoming.classList.add('sketchbook-active');
+
+      outgoing.addEventListener('transitionend', function cleanup() {
+        outgoing.classList.remove('slide-out-left');
+        outgoing.removeEventListener('transitionend', cleanup);
+      });
+
+      skIndex = newIndex;
       skCounter.textContent = (skIndex + 1) + ' / ' + skSlides.length;
       updateSketchThumbs();
     }
