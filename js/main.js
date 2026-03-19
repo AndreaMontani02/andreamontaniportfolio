@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
       item.addEventListener('click', (e) => {
         e.preventDefault();
         applyFilter(item.dataset.filter);
+
+        // Close dropdown after selecting a filter
+        const dropdown = item.closest('.nav-dropdown');
+        if (dropdown) {
+          dropdown.classList.add('dropdown-closed');
+          dropdown.addEventListener('mouseleave', () => {
+            dropdown.classList.remove('dropdown-closed');
+          }, { once: true });
+        }
       });
     }
   });

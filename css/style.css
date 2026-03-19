@@ -119,6 +119,10 @@ body {
   display: block;
 }
 
+.nav-dropdown.dropdown-closed .nav-dropdown-menu {
+  display: none;
+}
+
 .nav-dropdown-item {
   display: block;
   width: 100%;
@@ -466,6 +470,9 @@ body {
     gap: 32px;
   }
 
+  .project-video video {
+    height: 220px;
+  }
 }
 
 /* ===== Character Gallery Grid (detail page) ===== */
@@ -873,7 +880,7 @@ body {
     position: relative;
     width: 100%;
     height: 70vh;
-    touch-action: none;
+    touch-action: pan-y;
   }
 
   .about-section {

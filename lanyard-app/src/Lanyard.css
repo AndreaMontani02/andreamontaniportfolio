@@ -7,3 +7,10 @@
 .lanyard-wrapper canvas {
   touch-action: none;
 }
+
+@media (max-width: 600px) {
+  .lanyard-wrapper,
+  .lanyard-wrapper canvas {
+    touch-action: pan-y;
+  }
+}
