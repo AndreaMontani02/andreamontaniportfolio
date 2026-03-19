@@ -809,19 +809,19 @@ body {
   position: relative;
   z-index: 1;
   display: flex;
-  gap: 48px;
   align-items: flex-start;
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   pointer-events: none;
 }
 
 .about-spacer {
   flex-shrink: 0;
-  width: 300px;
+  width: 52%;
 }
 
 .about-text {
+  max-width: 380px;
   text-align: center;
   font-size: 15px;
   line-height: 1.8;
