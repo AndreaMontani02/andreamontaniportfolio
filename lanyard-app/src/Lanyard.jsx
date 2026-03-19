@@ -14,6 +14,48 @@ import './Lanyard.css';
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 
+function useBlueBandTexture(logoUrl) {
+  const [texture, setTexture] = useState(null);
+  useEffect(() => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      const w = img.width;
+      const h = img.height;
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+
+      // Blue background
+      ctx.fillStyle = '#1a3a6b';
+      ctx.fillRect(0, 0, w, h);
+
+      // Draw the white logo from the original texture
+      const tmp = document.createElement('canvas');
+      tmp.width = w;
+      tmp.height = h;
+      const tmpCtx = tmp.getContext('2d');
+      tmpCtx.drawImage(img, 0, 0);
+      const id = tmpCtx.getImageData(0, 0, w, h);
+      const d = id.data;
+      for (let p = 0; p < d.length; p += 4) {
+        const bright = (d[p] + d[p + 1] + d[p + 2]) / 3;
+        d[p + 3] = bright > 128 ? 255 : 0;
+      }
+      tmpCtx.putImageData(id, 0, 0);
+      ctx.drawImage(tmp, 0, 0);
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+      setTexture(tex);
+    };
+    img.src = logoUrl;
+  }, [logoUrl]);
+  return texture;
+}
+
+
 export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true, anchorX = 0 }) {
   return (
     <div className="lanyard-wrapper">
@@ -76,6 +118,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, anchorX = 0 }) {
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyard);
+  const blueTexture = useBlueBandTexture(lanyard);
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
@@ -177,7 +220,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, anchorX = 0 }) {
           depthTest={false}
           resolution={[1000, 1000]}
           useMap
-          map={texture}
+          map={blueTexture || texture}
           repeat={[-4, 1]}
           lineWidth={1}
         />
