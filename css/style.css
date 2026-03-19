@@ -297,16 +297,26 @@ body {
 
 /* ===== Project Detail Page ===== */
 .back-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
-  color: var(--grey);
-  font-size: 14px;
+  color: var(--dark);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
   margin-bottom: 32px;
-  transition: color 0.2s;
+  padding: 8px 16px;
+  border: 1.5px solid var(--grey-light);
+  border-radius: 24px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
 .back-link:hover {
-  color: var(--red);
+  color: var(--blue);
+  border-color: var(--blue);
+  background: rgba(26, 58, 107, 0.05);
 }
 
 .project-detail {
@@ -587,7 +597,6 @@ body {
 .sketchbook-frame {
   display: flex;
   align-items: center;
-  gap: 16px;
 }
 
 .sketchbook-image {
@@ -614,13 +623,16 @@ body {
 }
 
 .sketchbook-arrow {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border: 1.5px solid var(--blue);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #fff;
   border-radius: 50%;
-  background: transparent;
-  color: var(--blue);
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -628,17 +640,21 @@ body {
   transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 
+.sketchbook-arrow--left {
+  left: 12px;
+}
+
+.sketchbook-arrow--right {
+  right: 12px;
+}
+
 .sketchbook-arrow svg {
-  stroke: var(--blue);
+  stroke: #fff;
 }
 
 .sketchbook-arrow:hover {
-  background: var(--blue);
-  color: #fff;
-}
-
-.sketchbook-arrow:hover svg {
-  stroke: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  border-color: #fff;
 }
 
 .sketchbook-thumbs {
@@ -646,10 +662,8 @@ body {
   gap: 8px;
   margin-top: 16px;
   overflow-x: auto;
-  padding: 0 24px 4px;
-  margin-left: -24px;
-  margin-right: -24px;
-  justify-content: center;
+  padding: 4px 0;
+  justify-content: safe center;
 }
 
 .sketchbook-thumb {

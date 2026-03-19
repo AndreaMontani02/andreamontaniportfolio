@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
       skThumbs.forEach((t, i) => {
         t.classList.toggle('sketchbook-thumb-active', i === skIndex);
       });
+      skThumbs[skIndex].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     }
 
     function showSketch(index) {
