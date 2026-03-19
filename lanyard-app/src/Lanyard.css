@@ -1,4 +1,9 @@
 .lanyard-wrapper {
   width: 100%;
   height: 100%;
+  touch-action: none;
+}
+
+.lanyard-wrapper canvas {
+  touch-action: none;
 }
