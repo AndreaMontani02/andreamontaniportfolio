@@ -806,13 +806,17 @@ body {
   margin-right: 0;
   padding-left: 0;
   padding-right: 0;
+  overflow: hidden;
 }
 
 .lanyard-bg {
   position: absolute;
-  inset: 0;
+  top: -10vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 10vh);
   border: none;
   z-index: 0;
   pointer-events: auto;
