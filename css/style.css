@@ -987,6 +987,23 @@ body {
   .works-grid {
     grid-template-columns: 1fr;
   }
+
+  /* Mobile dropdown: toggle via class instead of hover */
+  .nav-dropdown:hover .nav-dropdown-menu {
+    display: none;
+  }
+
+  .nav-dropdown:hover > .nav-link::after {
+    transform: rotate(45deg);
+  }
+
+  .nav-dropdown.dropdown-open .nav-dropdown-menu {
+    display: block;
+  }
+
+  .nav-dropdown.dropdown-open > .nav-link::after {
+    transform: rotate(-135deg);
+  }
 }
 
 @media (min-width: 601px) and (max-width: 900px) {

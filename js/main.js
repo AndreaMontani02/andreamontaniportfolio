@@ -1,5 +1,24 @@
 // Dropdown filter logic for Works page
 document.addEventListener('DOMContentLoaded', () => {
+  // Mobile: toggle dropdown on tap instead of navigating
+  const isMobile = window.matchMedia('(max-width: 600px)').matches;
+  if (isMobile) {
+    const navDropdown = document.querySelector('.nav-dropdown');
+    const worksLink = navDropdown ? navDropdown.querySelector(':scope > .nav-link') : null;
+    if (worksLink) {
+      worksLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        navDropdown.classList.toggle('dropdown-open');
+      });
+    }
+    // Close dropdown when tapping outside
+    document.addEventListener('click', (e) => {
+      if (navDropdown && !navDropdown.contains(e.target)) {
+        navDropdown.classList.remove('dropdown-open');
+      }
+    });
+  }
+
   const dropdownItems = document.querySelectorAll('.nav-dropdown-item');
   const items = document.querySelectorAll('.work-item');
   const grid = document.querySelector('.works-grid');
@@ -42,15 +61,20 @@ document.addEventListener('DOMContentLoaded', () => {
     if (item.dataset.filter) {
       item.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         applyFilter(item.dataset.filter);
 
         // Close dropdown after selecting a filter
         const dropdown = item.closest('.nav-dropdown');
         if (dropdown) {
-          dropdown.classList.add('dropdown-closed');
-          dropdown.addEventListener('mouseleave', () => {
-            dropdown.classList.remove('dropdown-closed');
-          }, { once: true });
+          dropdown.classList.remove('dropdown-open');
+          if (!isMobile) {
+            // Desktop: use dropdown-closed to override :hover until mouse leaves
+            dropdown.classList.add('dropdown-closed');
+            dropdown.addEventListener('mouseleave', () => {
+              dropdown.classList.remove('dropdown-closed');
+            }, { once: true });
+          }
         }
       });
     }
