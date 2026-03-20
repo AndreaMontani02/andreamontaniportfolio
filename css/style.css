@@ -920,7 +920,7 @@ body {
     position: relative;
     width: 100%;
     height: 85vh;
-    margin-top: -15vh;
+    margin-top: -5vh;
     touch-action: pan-y;
   }
 
@@ -935,6 +935,10 @@ body {
 
   .about-spacer {
     display: none;
+  }
+
+  .about-text {
+    margin-top: -15vh;
   }
 }
 
