@@ -101,26 +101,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = overlay.querySelector('.gallery-close');
     const backdrop = overlay.querySelector('.gallery-overlay-backdrop');
     const galleryThumbs = overlay.querySelectorAll('.gallery-thumb');
+    const galleryCounter = overlay.querySelector('.gallery-counter');
     let currentIndex = 0;
 
     function updateGalleryThumbs() {
       galleryThumbs.forEach((t, i) => {
         t.classList.toggle('gallery-thumb-active', i === currentIndex);
       });
+      // Auto-scroll thumbs to keep active one centered
+      const container = overlay.querySelector('.gallery-thumbs');
+      const thumb = galleryThumbs[currentIndex];
+      if (container && thumb) {
+        const scrollLeft = thumb.offsetLeft - container.offsetWidth / 2 + thumb.offsetWidth / 2;
+        container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+      }
+    }
+
+    function updateGalleryCounter() {
+      if (galleryCounter) {
+        galleryCounter.textContent = (currentIndex + 1) + ' / ' + mainImages.length;
+      }
     }
 
     function showImage(index) {
-      mainImages[currentIndex].classList.remove('gallery-active');
-      currentIndex = (index + mainImages.length) % mainImages.length;
-      mainImages[currentIndex].classList.add('gallery-active');
+      const oldIndex = currentIndex;
+      const newIndex = (index + mainImages.length) % mainImages.length;
+      if (newIndex === oldIndex) return;
+
+      const goingRight = newIndex > oldIndex;
+      const outgoing = mainImages[oldIndex];
+      const incoming = mainImages[newIndex];
+
+      // Slide out
+      outgoing.classList.remove('gallery-active');
+      if (goingRight) outgoing.classList.add('gallery-slide-out-left');
+
+      // Slide in
+      if (!goingRight) incoming.classList.add('gallery-slide-in-left');
+      incoming.offsetWidth; // force reflow
+      incoming.classList.remove('gallery-slide-in-left');
+      incoming.classList.add('gallery-active');
+
+      outgoing.addEventListener('transitionend', function cleanup() {
+        outgoing.classList.remove('gallery-slide-out-left');
+        outgoing.removeEventListener('transitionend', cleanup);
+      });
+
+      currentIndex = newIndex;
       updateGalleryThumbs();
+      updateGalleryCounter();
     }
 
     function openOverlay(index) {
-      mainImages.forEach(img => img.classList.remove('gallery-active'));
+      mainImages.forEach(img => {
+        img.classList.remove('gallery-active', 'gallery-slide-out-left', 'gallery-slide-in-left');
+      });
       currentIndex = index;
       mainImages[currentIndex].classList.add('gallery-active');
       updateGalleryThumbs();
+      updateGalleryCounter();
       overlay.hidden = false;
       document.body.style.overflow = 'hidden';
     }
@@ -144,8 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
 
-    arrowLeft.addEventListener('click', () => showImage(currentIndex - 1));
-    arrowRight.addEventListener('click', () => showImage(currentIndex + 1));
+    if (arrowLeft) arrowLeft.addEventListener('click', () => showImage(currentIndex - 1));
+    if (arrowRight) arrowRight.addEventListener('click', () => showImage(currentIndex + 1));
     closeBtn.addEventListener('click', closeOverlay);
     backdrop.addEventListener('click', closeOverlay);
 

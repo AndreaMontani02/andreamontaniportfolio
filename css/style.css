@@ -478,7 +478,7 @@ body {
 /* ===== Character Gallery Grid (detail page) ===== */
 .character-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 16px;
 }
 
@@ -511,6 +511,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 60px;
 }
 
 .gallery-overlay[hidden] {
@@ -531,9 +532,10 @@ body {
 }
 
 .gallery-close {
-  position: absolute;
-  top: -48px;
-  right: 0;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
   background: none;
   border: none;
   color: #fff;
@@ -547,15 +549,15 @@ body {
 }
 
 .gallery-main {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  position: relative;
 }
 
 .gallery-main-image {
   position: relative;
-  flex: 1;
   aspect-ratio: 3 / 2;
+  max-height: 65vh;
+  max-width: calc(65vh * 3 / 2);
+  margin: 0 auto;
   background: var(--dark);
   border-radius: 6px;
   overflow: hidden;
@@ -568,26 +570,48 @@ body {
   height: 100%;
   object-fit: contain;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: translateX(40px) scale(0.97);
+  transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .gallery-main-image img.gallery-active {
   opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.gallery-main-image img.gallery-slide-out-left {
+  opacity: 0;
+  transform: translateX(-40px) scale(0.97);
+}
+
+.gallery-main-image img.gallery-slide-in-left {
+  transform: translateX(-40px) scale(0.97);
 }
 
 .gallery-arrow {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #fff;
   border-radius: 50%;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.45);
   color: #fff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: border-color 0.2s, background 0.2s;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.gallery-arrow--left {
+  left: 12px;
+}
+
+.gallery-arrow--right {
+  right: 12px;
 }
 
 .gallery-arrow svg {
@@ -595,8 +619,16 @@ body {
 }
 
 .gallery-arrow:hover {
+  background: rgba(0, 0, 0, 0.7);
   border-color: #fff;
-  background: rgba(255, 255, 255, 0.15);
+}
+
+.gallery-counter {
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+  margin-top: 12px;
+  opacity: 0.7;
 }
 
 .gallery-thumbs {
@@ -610,8 +642,8 @@ body {
 
 .gallery-thumb {
   flex-shrink: 0;
-  width: 72px;
-  height: 72px;
+  width: 75px;
+  height: 75px;
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
@@ -645,17 +677,18 @@ body {
   }
 
   .gallery-arrow {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .gallery-close {
-    top: -40px;
+    top: 12px;
+    right: 12px;
   }
 
   .gallery-thumb {
-    width: 56px;
-    height: 56px;
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -676,8 +709,11 @@ body {
 
 .sketchbook-image {
   position: relative;
-  flex: 1;
+  width: 100%;
   aspect-ratio: 3 / 2;
+  max-height: 65vh;
+  max-width: calc(65vh * 3 / 2);
+  margin: 0 auto;
   background: var(--dark);
   border-radius: 6px;
   overflow: hidden;
@@ -753,8 +789,8 @@ body {
 
 .sketchbook-thumb {
   flex-shrink: 0;
-  width: 72px;
-  height: 72px;
+  width: 75px;
+  height: 75px;
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
