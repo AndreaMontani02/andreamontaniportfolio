@@ -8,6 +8,7 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
 import cardGLB from './card.glb';
 import lanyard from './lanyard.png';
+import profiloImg from './profilo.png';
 
 import * as THREE from 'three';
 import './Lanyard.css';
@@ -118,6 +119,11 @@ function Band({ maxSpeed = 50, minSpeed = 0, anchorX = 0 }) {
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
   const { nodes, materials } = useGLTF(cardGLB);
   const texture = useTexture(lanyard);
+  const profiloTexture = useTexture(profiloImg);
+  profiloTexture.flipY = false;
+  profiloTexture.wrapS = THREE.RepeatWrapping;
+  profiloTexture.repeat.x = -1;
+  profiloTexture.offset.x = 1;
   const blueTexture = useBlueBandTexture(lanyard);
   const [curve] = useState(
     () =>
@@ -200,7 +206,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, anchorX = 0 }) {
           >
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial
-                map={materials.base.map}
+                map={profiloTexture}
                 map-anisotropy={16}
                 clearcoat={1}
                 clearcoatRoughness={0.15}
