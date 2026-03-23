@@ -121,9 +121,11 @@ function Band({ maxSpeed = 50, minSpeed = 0, anchorX = 0 }) {
   const texture = useTexture(lanyard);
   const profiloTexture = useTexture(profiloImg);
   profiloTexture.flipY = false;
-  profiloTexture.wrapS = THREE.RepeatWrapping;
-  profiloTexture.repeat.x = -1;
-  profiloTexture.offset.x = 1;
+  profiloTexture.wrapS = profiloTexture.wrapT = THREE.ClampToEdgeWrapping;
+  // Front face UVs span U: 0–0.5, V: 0–0.755
+  // Scale texture so the full image fits that UV region
+  profiloTexture.repeat.set(2.0, 1.325);
+  profiloTexture.offset.set(0, 0);
   const blueTexture = useBlueBandTexture(lanyard);
   const [curve] = useState(
     () =>
