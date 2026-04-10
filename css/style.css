@@ -945,7 +945,6 @@ body {
 /* ===== Showreel (Home) ===== */
 .showreel-frame {
   max-width: 960px;
-  aspect-ratio: 1920 / 1080;
   margin: 0 auto;
   border-radius: 12px;
   overflow: hidden;
